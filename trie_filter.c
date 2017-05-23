@@ -402,16 +402,13 @@ PHP_FUNCTION(trie_filter_save)
    Returns true, or false on error*/
 PHP_FUNCTION(trie_filter_free)
 {
-    Trie *trie;
     zval *trie_resource;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "r", &trie_resource) == FAILURE) {
         RETURN_FALSE;
     }
 
-    trie = (Trie *)zend_fetch_resource(Z_RES_P(trie_resource), PHP_TRIE_FILTER_RES_NAME, le_trie_filter);
-
-    if (zend_list_delete(Z_RES_P(trie_resource)) == SUCCESS) {
+    if (zend_list_close(Z_RES_P(trie_resource)) == SUCCESS) {
         RETURN_TRUE;
     }
     RETURN_FALSE;
