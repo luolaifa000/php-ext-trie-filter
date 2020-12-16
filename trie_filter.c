@@ -379,7 +379,7 @@ PHP_FUNCTION(trie_filter_save)
     Trie *trie;
     zval *trie_resource;
     unsigned char *filename;
-    int filename_len;
+    size_t filename_len;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "rs",
                 &trie_resource, &filename, &filename_len) == FAILURE) {
